@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monitoring-config xmlns="dbTradeStore:Monitoring:config">
+	<monitoring-config-item>
+		<server-name>dbTradeStore-xcc</server-name>
+
+		<check>
+			<name>Database Count Change</name>
+			<check-type>TREND</check-type>
+			<check-over-period-seconds>3600</check-over-period-seconds>
+			<path>/status/database-count</path>
+			<tolerance>0</tolerance>
+		</check>
+		<check>
+			<name>Server Count Change</name>
+			<check-type>TREND</check-type>
+			<check-over-period-seconds>3600</check-over-period-seconds>
+			<path>/status/server-count</path>
+			<tolerance>0</tolerance>
+		</check>
+		<check>
+			<name>Host Count Change</name>
+			<check-type>TREND</check-type>
+			<check-over-period-seconds>3600</check-over-period-seconds>
+			<path>/status/host-count</path>
+			<tolerance>0</tolerance>
+		</check>
+		<check>
+			<name>Foreign Cluster Count</name>
+			<check-type>TREND</check-type>
+			<check-over-period-seconds>3600</check-over-period-seconds>
+			<path>/status/foreign-cluster-count</path>
+			<tolerance>0</tolerance>
+		</check>
+		<check>
+			<name>Is Bootstrapped</name>
+			<check-type>BOOLEAN</check-type>
+			<path>/status/is-bootstrapped</path>
+		</check>
+		<check>
+			<name>Long Running Request</name>
+			<check-type>LIMIT</check-type>
+			<limit>60</limit>
+			<path>/status/oldest-request</path>
+		</check>
+		<check>
+			<name>Database Available</name>
+			<check-type>BOOLEAN</check-type>
+			<path>/status/database-available</path>
+		</check>
+		<check>
+			<name>Failed Masters</name>
+			<check-type>LIMIT</check-type>
+			<limit>0</limit>
+			<path>/status/failed-masters</path>
+		</check>
+		<check>
+			<name>ASync Replicating</name>
+			<check-type>LIMIT</check-type>
+			<limit>0</limit>
+			<path>/status/async-replicating</path>
+		</check>
+		<check>
+			<name>Stands Per Forest</name>
+			<check-type>LIMIT</check-type>
+			<limit>50</limit>
+			<warn-limit>35</warn-limit>
+			<path>/status/max-stands-per-forest</path>
+		</check>
+		<check>
+			<name>Max Forest Fragment Count</name>
+			<check-type>LIMIT</check-type>
+			<limit>64</limit>
+			<warn-limit>55</warn-limit>
+			<unit>m</unit>			
+			<path>/status/max-forest-fragments</path>
+		</check>						
+		<check>
+			<name>Max Forest Size</name>
+			<check-type>LIMIT</check-type>
+			<limit>200</limit>
+			<warn-limit>180</warn-limit>
+			<unit>gb</unit>			
+			<path>/status/max-forest-size-bytes</path>
+		</check>				
+		<check>
+			<name>DB Fragment count</name>
+			<check-type>FOR_INFORMATION</check-type>
+			<path>/status/document-count</path>
+		</check>
+		<check>
+			<name>DB Size (mb)</name>
+			<check-type>FOR_INFORMATION</check-type>
+			<path>/status/on-disk-size-mb</path>
+			<unit>mb</unit>						
+		</check>				
+		<check>
+			<name>Capacity</name>
+			<check-type>CAPACITY</check-type>
+		</check>
+		<check>
+			<name>Freshness</name>
+			<check-type>FRESHNESS</check-type>
+			<path>/status/date-time</path>
+			<limit>120</limit>
+			<unit>seconds</unit>
+			
+		</check>				
+		<check>
+			<name>Last Backup</name>
+			<check-type>FRESHNESS</check-type>
+			<limit>3</limit>
+			<path>/status/last-backup</path>
+			<unit>days</unit>
+		</check>						
+	</monitoring-config-item>	
+</monitoring-config>

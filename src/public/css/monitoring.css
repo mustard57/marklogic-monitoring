@@ -1,0 +1,124 @@
+body{
+  margin-top : 3%;
+	height : 100%;
+	alignment: center;
+}
+
+.red-background{
+	background-color: #ff4455;
+}
+
+.amber-background{
+	background-color : #ffad5c;
+}
+.blue-background{
+	background-color: #c2e0ff;
+}
+
+.white-background{
+	background-color: "white";
+}
+
+.green-background{
+	background-color: #ccff99;
+}
+
+.bold-cell{
+	text-align: left;
+	font-weight: bold;
+}
+
+.value-cell{
+	padding-right: 15px;
+}
+
+table {
+	margin : auto; 
+	width : 80%;
+}
+
+td {
+	text-align: right;
+	padding-left: 10px;
+	margin-left: 0px; 
+}
+
+th {
+	text-align: left;
+	font-weight: bold;
+	padding-left: 0px;
+	margin-left: 0px; 
+  background-color: #c2e0ff;
+}
+
+.heading {
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 2px;
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 1%;
+	margin-bottom: 0%;
+}
+
+.table-heading {
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 1%;
+	margin-bottom: 0%;
+}
+
+h1 {
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial,
+		Helvetica, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	color: #3E576F;
+	fill: #3E576F;
+}
+
+h2{
+       padding-top: 5px;
+       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+       font-size: 18px;
+       font-weight: bold;
+       text-align: center;
+       color: #669;  
+}
+ 
+h3{
+       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+       font-size: 17px;
+       font-weight: bold;
+       text-align: left;
+       color: #669;  
+}
+ 
+h4
+{
+       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+       font-size: 12px;
+       font-weight : normal;
+       text-align: center;
+       color: #669;  
+       margin-bottom : 10px;
+       padding-bottom : 2px;
+       margin-top : 2px;
+}
+
+.graph-box {
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	float: left;
+	height: 75%;
+	width: 96%
+}
+
+.clear-float {
+	clear: both;
+}

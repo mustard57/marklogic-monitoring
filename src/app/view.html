@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>MarkLogic Monitoring</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/monitoring.css" />
+		<script src="/public/js/jquery.min.js"></script>
+		<script src="/public/js/app.js"></script>
+		
+		<script type="text/javascript">                                 
+		$(document).ready(function(){
+			var absolute_graphs = ['document-count','merge-write-bytes','journal-write-bytes','save-write-bytes','backup-write-bytes'];
+			var absolute_graph_axis_config = ['right','left','left','left','left'];			
+			var request_graphs = ['query-count','update-count','thread-count','request-rate','oldest-request'];
+			var request_graph_axis_config = ['left','left','left','left','right'];
+			var ingestion_graphs = ['document-count-per-second','merge-write-bytes-per-second','journal-write-bytes-per-second','save-write-bytes-per-second'];			
+			var ingestion_graph_axis_config = ['right','left','left','left'];			
+			var memory_graphs = ['in-memory-size','in-memory-size-minus-in-memory-stands'];
+			var memory_graph_axis_config = ['left','left'];
+			var cache_ratio_graphs = ['list-cache-hit-miss-ratio','compressed-tree-cache-hit-miss-ratio','expanded-tree-cache-hit-miss-ratio'];
+			var cache_ratio_graph_axis_config = ['left','left','left'];
+			var network_graphs = ['network-send-bytes-per-second','dr-cluster-send-bytes-per-second','backup-write-bytes-per-second'];			
+			var network_graph_axis_config = ['left','left','right'];
+			
+			var absolute_graph_config = {title : 'IO Activity ( Absolute )', left_axis_legend : 'Bytes', right_axis_legend : 'Documents'};
+			var request_graph_config = {title : 'Server Requests', left_axis_legend : 'Rate / second', right_axis_legend : 'Seconds'};
+			var ingestion_graph_config = {title : 'IO Activity (Rate )', left_axis_legend : 'Bytes / second', right_axis_legend : 'Documents / Second'};
+			var memory_graph_config = {title : 'Memory Usage', left_axis_legend : 'Mb', right_axis_legend : 'Mb'};			
+			var cache_ratio_graph_config = {title : 'Cache Ratio', left_axis_legend : 'Percent', right_axis_legend : 'Percent'};
+			var network_graph_config = {title : 'Network Usage / Backup Activity', left_axis_legend : 'Bytes / second', right_axis_legend : 'Bytes / second'};
+			
+			var graphs = {absolute : absolute_graphs, request : request_graphs, ingestion : ingestion_graphs, memory : memory_graphs, cache_ratio : cache_ratio_graphs, "network%20and_backup" : network_graphs};
+			var graph_config = {absolute : absolute_graph_config, request : request_graph_config, ingestion : ingestion_graph_config, memory : memory_graph_config, cache_ratio : cache_ratio_graph_config, "network%20and_backup" : network_graph_config};
+			var axis_config = {absolute : absolute_graph_axis_config, request : request_graph_axis_config, ingestion : ingestion_graph_axis_config, memory : memory_graph_axis_config, cache_ratio : cache_ratio_graph_axis_config, "network%20and_backup" : network_graph_axis_config};
+			
+			var seriesOptions = [],
+				yAxisOptions = [],
+				seriesCounter = 0,
+				graph = get_url_arguments()['graph'],
+				// Add period if supplied - needs to be a number or \dH or \dD
+				period = get_url_arguments()['period'];
+				period = period ? "&period=" + period : "";
+				// Graph specified statistic if given
+				statistics = graphs[graph] ? graphs[graph] : ingestion_graphs;
+				config = graph_config[graph] ? graph_config[graph] : ingestion_graph_config;
+				axes = axis_config[graph] ? axis_config[graph] : ingestion_graph_axis_config;
+
+			
+			$.each(statistics, function(i, statistic) {
+
+				$.getJSON('/app/getDataForChart.xqy?function=chart:get-statistic&params='+statistic+period+'&columns=1,2&callback=?',	function(data) {
+									
+					seriesOptions[i] = {
+						yAxis: axes[i] == 'left' ? 1 :0,
+						name: element_name_to_title(statistic),
+						data: data
+					};
+
+					// As we're loading the data asynchronously, we don't know what order it will arrive. So
+					// we keep a counter and create the chart when all the data is loaded.
+					seriesCounter++;
+
+					if (seriesCounter == statistics.length) {
+						createChart(seriesOptions,config);
+					}
+				});
+			});
+
+
+
+		});
+
+
+		
+		</script>
+					
+	</head>
+	<body>
+		<script src="/public/js/highstock.js"></script>
+		<script src="/public/js/exporting.js"></script>
+ 
+		<div class="heading"><h1>MarkLogic System Analysis</h1></div>
+ 
+		<div id="io-graph" class="graph-box"></div>
+		<div class="clear-float"></div>
+		<div style="margin-top : 20px">
+			<div style="float:left;width : 100%">
+                <p style="text-align : center ; width : 100%"><a href="/index.xqy">Home</a></p>
+            </div>
+		</div>
+	</body>
+</html>

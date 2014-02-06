@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<section>
+		<section-name>Queries / Updates</section-name>
+		<field>query-count</field>
+		<field>update-count</field>		
+		<field>thread-count</field>				
+		<field>request-rate</field>				
+		<field>oldest-request</field>		
+	</section>
+	<section>
+		<section-name>IO Rates</section-name>
+		<field>document-count-per-second</field>
+		<field>query-read-bytes-per-second</field>
+		<field>journal-write-bytes-per-second</field>
+		<field>save-write-bytes-per-second</field>
+		<field>merge-read-bytes-per-second</field>
+		<field>merge-write-bytes-per-second</field>
+		<field>backup-read-bytes-per-second</field>
+		<field>backup-write-bytes-per-second</field>		
+	</section>	
+	<section>
+		<section-name>Raw Counts</section-name>
+		<field>document-count</field>
+		<field>max-forest-size-bytes</field>
+		<field>max-forest-fragments</field>
+	</section>
+	<section>
+		<section-name>Memory</section-name>
+		<field>in-memory-size</field>
+		<field>in-memory-size-minus-in-memory-stands</field>		
+	</section>
+	<section>
+		<section-name>Cache</section-name>
+		<field>list-cache-hit-miss-ratio</field>
+		<field>compressed-tree-cache-hit-miss-ratio</field>
+		<field>expanded-tree-cache-hit-miss-ratio</field>
+	</section>
+	<section>
+		<section-name>Merge</section-name>
+		<field>merge-count</field>
+		<field>merge-size</field>
+		<field>reindex-count</field>
+	</section>
+	<section>
+		<section-name>Network</section-name>
+		<field>network-send-bytes-per-second</field>
+		<field>dr-cluster-send-bytes-per-second</field>
+	</section>
+	
+</root>

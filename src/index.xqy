@@ -4,7 +4,7 @@ import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 xdmp:set-response-content-type("text/html"),
 element html{
 	element head{
-		element title {"MarkLogic KT Monitoring"},
+		element title {"MarkLogic Monitoring"},
 		element link { attribute rel {"stylesheet"}, attribute type {"text/css"}, attribute href {"/public/css/monitoring.css"}}
 	},
 	element body{

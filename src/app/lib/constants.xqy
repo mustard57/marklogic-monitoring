@@ -21,7 +21,7 @@ declare variable $days-history-in-graph := 5;
 (: Once data reaches this limit ( days ) delete :)
 declare variable $maximum-snapshot-age := 90;
 
-declare variable $monitoring-role-name := "KT-Monitoring-role";
+declare variable $monitoring-role-name := "ML-Monitoring-role";
 
 declare variable $PERIOD-PARAMETER-NAME := "period";
 

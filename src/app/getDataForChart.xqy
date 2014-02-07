@@ -1,7 +1,7 @@
 (: import module namespace chart-helper = "marklogic:fpml:demo:chart-helper" at "/app/lib/chartHelper.xqy"; :)
 
-import module namespace chart = "dbTradeStore:Monitoring:chart" at "/app/lib/chart-data.xqy";
-import module namespace constants = "dbTradeStore:Monitoring:constants" at "/app/lib/constants.xqy";
+import module namespace chart = "KT:Monitoring:chart" at "/app/lib/chart-data.xqy";
+import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 
 declare variable $PERMITTED-FUNCTIONS := ("chart:get-statistic");
 declare variable $period := xdmp:get-request-field($constants:PERIOD-PARAMETER-NAME,xs:string($constants:days-history-in-graph));

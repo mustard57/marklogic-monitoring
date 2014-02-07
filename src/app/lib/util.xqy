@@ -1,9 +1,9 @@
-module namespace util = "dbTradeStore:Monitoring:util";
+module namespace util = "KT:Monitoring:util";
 
-import module namespace constants = "dbTradeStore:Monitoring:constants" at "/app/lib/constants.xqy";
+import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 
 declare namespace fs = "http://marklogic.com/xdmp/status/forest";
-declare namespace dbTS-mon-config = "dbTradeStore:Monitoring:config";
+declare namespace ML-mon-config = "KT:Monitoring:config";
 
 declare variable $unit-duration := xs:dayTimeDuration("PT1S");
 
@@ -64,7 +64,7 @@ declare function capacity-statistics($all-forest-status as element(fs:forest-sta
 };
 
 declare function server-name-from-monitoring-config-doc($monitoring-doc){
-	$monitoring-doc/dbTS-mon-config:monitoring-config/dbTS-mon-config:monitoring-config-item/dbTS-mon-config:server-name/text()
+	$monitoring-doc/ML-mon-config:monitoring-config/ML-mon-config:monitoring-config-item/ML-mon-config:server-name/text()
 };
 
 declare function latest-status($server-name){

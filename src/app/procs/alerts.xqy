@@ -1,11 +1,11 @@
 (:
 	Essentially a pretty print fof the monitoring check report
 :)
-import module namespace monitoring-check = "dbTradeStore:Monitoring:monitoring-check" at "/app/lib/monitoring-check.xqy";
-import module namespace constants = "dbTradeStore:Monitoring:constants" at "/app/lib/constants.xqy";
-import module namespace util = "dbTradeStore:Monitoring:util" at "/app/lib/util.xqy";
+import module namespace monitoring-check = "KT:Monitoring:monitoring-check" at "/app/lib/monitoring-check.xqy";
+import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
+import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
-declare namespace monitoring-config = "dbTradeStore:Monitoring:config";
+declare namespace monitoring-config = "KT:Monitoring:config";
 
 declare variable $config-document := fn:doc($constants:configuration-uri);
 declare variable $server-name := util:server-name-from-monitoring-config-doc($config-document);

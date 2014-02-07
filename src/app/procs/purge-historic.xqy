@@ -1,7 +1,7 @@
 (: Delete snapshot data of more than a certain age  - specified in days by $max-document-age :)
 
-import module namespace constants = "dbTradeStore:Monitoring:constants" at "/app/lib/constants.xqy";
-import module namespace util = "dbTradeStore:Monitoring:util" at "/app/lib/util.xqy";
+import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
+import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
 declare variable $max-document-age := fn:current-dateTime() - $constants:maximum-snapshot-age * xs:dayTimeDuration("P1D");
 declare variable $docs-for-deletion-query := cts:element-range-query(xs:QName("date-time"),"<=",$max-document-age);

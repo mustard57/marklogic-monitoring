@@ -1,4 +1,4 @@
-import module namespace util = "dbTradeStore:Monitoring:util" at "/app/lib/util.xqy";
+import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
 import module namespace admin  = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
 

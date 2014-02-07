@@ -64,8 +64,8 @@ class ServerConfig
           "/app/procs/save-monitoring-stats.xqy",
           "/",
           1,
-          xdmp:database("dbTradeStore-Monitoring-content"),
-          xdmp:database("dbTradeStore-Monitoring-modules"),
+          xdmp:database("ML-Monitoring-content"),
+          xdmp:database("ML-Monitoring-modules"),
           xdmp:user("admin"), 
           xdmp:hosts()[1])
 
@@ -84,8 +84,8 @@ class ServerConfig
           "/",
           1,
 		  xs:time("02:00:00"),
-          xdmp:database("dbTradeStore-Monitoring-content"),
-          xdmp:database("dbTradeStore-Monitoring-modules"),
+          xdmp:database("ML-Monitoring-content"),
+          xdmp:database("ML-Monitoring-modules"),
           xdmp:user("admin"), 
           xdmp:hosts()[1])
 

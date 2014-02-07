@@ -1,4 +1,4 @@
-import module namespace monitoring-check = "dbTradeStore:Monitoring:monitoring-check" at "/app/lib/monitoring-check.xqy";
+import module namespace monitoring-check = "KT:Monitoring:monitoring-check" at "/app/lib/monitoring-check.xqy";
 
 let $results := monitoring-check:monitoring-check-report()/check-result
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monitoring-config xmlns="dbTradeStore:Monitoring:config">
+<monitoring-config xmlns="KT:Monitoring:config">
 	<monitoring-config-item>
-		<server-name>dbTradeStore-xcc</server-name>
+		<server-name>YOUR SERVER NAME HERE</server-name>
 
 		<check>
 			<name>Database Count Change</name>

@@ -1,7 +1,7 @@
-import module namespace constants = "dbTradeStore:Monitoring:constants" at "/app/lib/constants.xqy";
-import module namespace util = "dbTradeStore:Monitoring:util" at "/app/lib/util.xqy";
+import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
+import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
-declare namespace dbmc = "dbTradeStore:Monitoring:config";
+declare namespace dbmc = "KT:Monitoring:config";
 
 declare variable $config-document := fn:doc($constants:configuration-uri);
 

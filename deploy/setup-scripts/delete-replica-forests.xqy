@@ -4,7 +4,6 @@ xquery version "1.0-ml";
 import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
 
 declare variable $db-name := "#DATABASE_NAME#";  (: DB we are setting replica forests up for :)
-(: declare variable $db-name := "dbTradeStore-Monitoring-content"; :) (: DB we are setting replica forests up for :)
 
 declare variable $debug := fn:false(); (: Set this to true if you just want text output, not actual activity :)
 declare variable $write-to-log-file := fn:true(); (: Send messages to xdmp:log as well as stdout :)

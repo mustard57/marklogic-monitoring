@@ -1,4 +1,4 @@
-module namespace constants = "dbTradeStore:Monitoring:constants";
+module namespace constants = "KT:Monitoring:constants";
 
 declare variable $configuration-uri := "/config/monitoring-config.xml";
 declare variable $report-config-uri := "/config/report-config.xml";
@@ -21,7 +21,7 @@ declare variable $days-history-in-graph := 5;
 (: Once data reaches this limit ( days ) delete :)
 declare variable $maximum-snapshot-age := 90;
 
-declare variable $monitoring-role-name := "dbTradeStore-Monitoring-role";
+declare variable $monitoring-role-name := "KT-Monitoring-role";
 
 declare variable $PERIOD-PARAMETER-NAME := "period";
 

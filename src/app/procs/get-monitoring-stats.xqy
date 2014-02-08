@@ -1,10 +1,7 @@
 import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
 import module namespace admin  = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
-
-(: Make use of functions from the build in monitoring tools :)
-import module namespace dmod = "http://marklogic.com/manage/database" at "/MarkLogic/manage/models/database-model.xqy";
-import module namespace fmod = "http://marklogic.com/manage/forest" at "/MarkLogic/manage/models/forest-model.xqy";
+import module namespace mm = "KT:Monitoring:manage-model" at "/app/lib/manage-model.xqy";
 
 (: Namespaces associated with xdmp:cluster-status/server-status/forest-status :)
 declare namespace fcs = "http://marklogic.com/xdmp/status/foreign-cluster";
@@ -97,20 +94,20 @@ declare function local:expanded-tree-cache-misses(){
 };
 
 declare function local:expanded-tree-cache-hit-miss-ratio(){
-	let $ratio := fmod:calculate-ratio(local:expanded-tree-cache-hits(), local:expanded-tree-cache-misses())
+	let $ratio := mm:calculate-ratio(local:expanded-tree-cache-hits(), local:expanded-tree-cache-misses())
 	return
 	if(fn:empty($ratio)) then 100 else $ratio
 };
 
 declare function local:compressed-tree-cache-hit-miss-ratio(){
-	let $ratio := fmod:calculate-ratio(local:compressed-tree-cache-hits(), local:compressed-tree-cache-misses())
+	let $ratio := mm:calculate-ratio(local:compressed-tree-cache-hits(), local:compressed-tree-cache-misses())
 	return
 	if(fn:empty($ratio)) then 100 else $ratio
 };
 
 
 declare function local:list-cache-hit-miss-ratio(){
-	let $ratio := fmod:get-list-cache-ratio($master-forest-status)
+	let $ratio := mm:get-list-cache-ratio($master-forest-status)
 	return
 	if(fn:empty($ratio)) then 100 else $ratio
 };
@@ -142,7 +139,7 @@ declare function local:async-replicating() as xs:int{
 };
 
 declare function local:database-replication-active(){
-  dmod:get-database-replication-status($database-id,$master-forest-status)
+  (: dmod:get-database-replication-status($database-id,$master-forest-status) :) ()
 };
 
 declare function local:compressed-tree-cache-hits(){
@@ -245,11 +242,11 @@ declare function local:last-backup(){
   <list-cache-hits>{local:list-cache-hits()}</list-cache-hits>
   <list-cache-misses>{local:list-cache-misses()}</list-cache-misses>
   <list-cache-hit-miss-ratio>{local:list-cache-hit-miss-ratio()}</list-cache-hit-miss-ratio>  
-  <document-count>{fmod:get-document-count($open-counts)}</document-count>
+  <document-count>{mm:get-document-count($open-counts)}</document-count>
   {
             for $i in ("query-read-bytes","journal-write-bytes","save-write-bytes","merge-read-bytes","merge-write-bytes","backup-read-bytes","backup-write-bytes")
             return 
-            element {$i} {sum(fmod:get-load-properties($master-forest-status,xs:QName("fs:"||$i))/data(.))}
+            element {$i} {sum(mm:get-load-properties($master-forest-status,xs:QName("fs:"||$i))/data(.))}
 
 
   }
@@ -257,13 +254,13 @@ declare function local:last-backup(){
   <dr-cluster-send-bytes>{local:dr-cluster-send-bytes()}</dr-cluster-send-bytes>
   <max-forest-size-bytes>{local:get-max-forest-size() * 1024 * 1024}</max-forest-size-bytes>
   <max-forest-fragments>{local:get-max-forest-fragment-count()}</max-forest-fragments>
-  <merge-count>{fmod:get-merge-count($all-forest-status)}</merge-count>
-  <merge-size>{fmod:get-merge-size($all-forest-status)}</merge-size>
-  <reindex-count>{fmod:get-reindexing-count($all-forest-status)}</reindex-count>
-  <backup-count>{fmod:get-backup-count($all-forest-status)}</backup-count>
-  <max-stands-per-forest>{fmod:get-max-stands-per-forest($all-forest-status)}</max-stands-per-forest>
-  <on-disk-size-mb>{fmod:get-on-disk-size($open-stats)}</on-disk-size-mb>
-  <in-memory-size>{(fmod:get-in-memory-size($open-stats),0)[1]}</in-memory-size>
+  <merge-count>{mm:get-merge-count($all-forest-status)}</merge-count>
+  <merge-size>{mm:get-merge-size($all-forest-status)}</merge-size>
+  <reindex-count>{mm:get-reindexing-count($all-forest-status)}</reindex-count>
+  <backup-count>{mm:get-backup-count($all-forest-status)}</backup-count>
+  <max-stands-per-forest>{mm:get-max-stands-per-forest($all-forest-status)}</max-stands-per-forest>
+  <on-disk-size-mb>{mm:get-on-disk-size($open-stats)}</on-disk-size-mb>
+  <in-memory-size>{(mm:get-in-memory-size($open-stats),0)[1]}</in-memory-size>
   <in-memory-size-minus-in-memory-stands>{local:memory-size-minus-in-memory-stands($open-stats)}</in-memory-size-minus-in-memory-stands>
   {util:capacity-statistics($all-forest-status)}
 </status>

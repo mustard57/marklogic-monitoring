@@ -22,6 +22,7 @@
 	<section>
 		<section-name>Raw Counts</section-name>
 		<field>document-count</field>
+        <field>on-disk-size-mb</field> 
 		<field>max-forest-size-bytes</field>
 		<field>max-forest-fragments</field>
 	</section>

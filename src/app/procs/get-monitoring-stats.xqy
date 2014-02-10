@@ -51,7 +51,7 @@ declare function local:server-count(){
 };
 
 declare function local:host-count(){
-  fn:count(xdmp:hosts())
+	fn:count(xdmp:host-status(xdmp:host())//hs:online[. = fn:true()]) 
 };
 
 declare function local:foreign-cluster-count(){
@@ -82,7 +82,9 @@ declare function local:oldest-request() as xs:double{
 declare function local:request-rate(){
   let $rate := fn:avg($server-status/ss:request-rate/data())
   return
-  if(fn:empty($rate)) then 0 else $rate
+  if(fn:empty($rate)) then 0 
+  else if(xs:string($rate) = "NaN") then 0
+  else $rate
 };
 
 declare function local:expanded-tree-cache-hits(){
@@ -225,6 +227,7 @@ declare function local:last-backup(){
   <is-bootstrapped>{local:is-bootstrapped()}</is-bootstrapped>
   <last-backup>{local:last-backup()}</last-backup>
   <oldest-request>{local:oldest-request()}</oldest-request>
+  <request-rate>{local:request-rate()}</request-rate>
   <expanded-tree-cache-hits>{local:expanded-tree-cache-hits()}</expanded-tree-cache-hits>
   <expanded-tree-cache-misses>{local:expanded-tree-cache-misses()}</expanded-tree-cache-misses>  
   <expanded-tree-cache-hit-miss-ratio>{local:expanded-tree-cache-hit-miss-ratio()}</expanded-tree-cache-hit-miss-ratio>    

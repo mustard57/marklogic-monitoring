@@ -8,7 +8,7 @@ element html{
 		element link { attribute rel {"stylesheet"}, attribute type {"text/css"}, attribute href {"/public/css/monitoring.css"}}
 	},
 	element body{
-		element h1{"MarkLogic KT Monitoring"},
+		element h1{"MarkLogic Monitoring"},
     element h2{"Tables"},
     element h4{element a{ attribute href{$constants:monitoring-report-uri}, "Current Server Metrics"}},    
 		element h2{"Charts"},

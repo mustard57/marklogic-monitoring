@@ -7,8 +7,7 @@ import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
 declare namespace monitoring-config = "KT:Monitoring:config";
 
-declare variable $config-document := fn:doc($constants:configuration-uri);
-declare variable $server-name := util:server-name-from-monitoring-config-doc($config-document);
+declare variable $server-name := util:get-server-name();
 
 declare variable $current-status := util:latest-status($server-name);
 
@@ -25,8 +24,9 @@ declare function local:check-map() as map:map{
 
 declare function local:monitoring-config-map() as map:map{
   let $map := map:map()
-  let $null := for $check in  fn:doc($constants:configuration-uri)//monitoring-config:check
-                  return map:put($map,$check/monitoring-config:name,$check)
+  let $null := for $check in  
+	fn:doc($constants:configuration-uri)/monitoring-config:monitoring-config/monitoring-config:monitoring-config-item[monitoring-config:server-name = $server-name]/monitoring-config:check
+  return map:put($map,$check/monitoring-config:name,$check)
   return
   $map  
 };
@@ -122,7 +122,7 @@ element head{
 		<link rel="stylesheet" type="text/css" href="/public/css/monitoring.css" />
 },
 element body{
-element h1{"Alerting Dashboard"},
+element h1{"Alerting Dashboard for "||$server-name},
 let $check-types := fn:tokenize("BOOLEAN,TREND,LIMIT,FRESHNESS,CAPACITY",",")  
 return
 for $check-type in $check-types

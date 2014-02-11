@@ -63,8 +63,19 @@ declare function capacity-statistics($all-forest-status as element(fs:forest-sta
 	}
 };
 
+declare function get-server-name(){
+	if(xdmp:get-request-field($constants:server-name-field-name)) then xdmp:set-session-field($constants:server-name-field-name,xdmp:get-request-field($constants:server-name-field-name))[0]
+	else if(fn:empty(xdmp:get-session-field($constants:server-name-field-name))) then xdmp:set-session-field($constants:server-name-field-name,default-server-name())[0]
+	else()
+	,
+	xdmp:get-session-field($constants:server-name-field-name)
+};
+declare function default-server-name(){
+	server-name-from-monitoring-config-doc(fn:doc($constants:configuration-uri))
+};
+
 declare function server-name-from-monitoring-config-doc($monitoring-doc){
-	$monitoring-doc/ML-mon-config:monitoring-config/ML-mon-config:monitoring-config-item/ML-mon-config:server-name/text()
+	($monitoring-doc/ML-mon-config:monitoring-config/ML-mon-config:monitoring-config-item/ML-mon-config:server-name/text())[1]
 };
 
 declare function latest-status($server-name){

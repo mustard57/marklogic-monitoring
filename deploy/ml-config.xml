@@ -26,6 +26,7 @@
       <root>@ml.modules-root</root>
       <authentication>@ml.authentication-method</authentication>
       <default-user name="@ml.default-user"/>
+	  <collation>http://marklogic.com/collation/codepoint</collation>
       <url-rewriter/>
       <error-handler/>
       <rewrite-resolves-globally>@ml.rewrite-resolves-globally</rewrite-resolves-globally>
@@ -281,6 +282,13 @@
 	  <localname>expanded-tree-cache-hit-miss-ratio</localname>
 	  <range-value-positions>false</range-value-positions>
 	</range-element-index>
+	<range-element-index>
+	  <scalar-type>string</scalar-type>
+	  <namespace-uri/>
+	  <localname>server-name</localname>
+	  <collation>http://marklogic.com/collation/codepoint</collation>
+	  <range-value-positions>false</range-value-positions>
+	</range-element-index>	
       </range-element-indexes>
       <range-element-attribute-indexes>
 	<!--

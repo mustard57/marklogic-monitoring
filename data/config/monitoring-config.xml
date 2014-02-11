@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monitoring-config xmlns="KT:Monitoring:config">
 	<monitoring-config-item>
-		<server-name>ML-Monitoring-xcc</server-name>
-
+		<server-name>YOUR SERVER NAME HERE</server-name>
 		<check>
 			<name>Database Count Change</name>
 			<check-type>TREND</check-type>
@@ -113,4 +112,6 @@
 			<unit>days</unit>
 		</check>						
 	</monitoring-config-item>	
+	
+	
 </monitoring-config>

@@ -1,11 +1,8 @@
 import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
-declare namespace dbmc = "KT:Monitoring:config";
-
-declare variable $config-document := fn:doc($constants:configuration-uri);
-
-declare variable $server-name := util:server-name-from-monitoring-config-doc($config-document);
+(: The input argument :)
+declare variable $server-name as xs:string external;
 
 declare variable $current-status := util:latest-status($server-name);
 declare variable $second-latest-status := util:second-latest-status($server-name);

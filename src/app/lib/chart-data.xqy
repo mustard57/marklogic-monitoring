@@ -3,9 +3,7 @@ module namespace chart = "KT:Monitoring:chart";
 import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
-declare variable $config-document := fn:doc($constants:configuration-uri);
-
-declare variable $default-server-name := util:server-name-from-monitoring-config-doc($config-document);
+declare variable $server-name := util:get-server-name();
 
 declare private function nvl($value) as xs:string{
   if(fn:empty($value)) then "0" else 
@@ -38,10 +36,10 @@ declare function get-statistic($element-name as xs:string, $period as xs:string,
 };
 
 declare function get-statistic($element-name as xs:string, $period as xs:string){
-    get-statistic($element-name,$period,$default-server-name)
+    get-statistic($element-name,$period,$server-name)
 };
 
 declare function get-statistic($element-name as xs:string){
-    get-statistic($element-name,xs:string($constants:days-history-in-graph),$default-server-name)
+    get-statistic($element-name,xs:string($constants:days-history-in-graph),$server-name)
 };
 

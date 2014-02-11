@@ -1,6 +1,7 @@
 import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
+
 xdmp:set-response-content-type("text/html"),
 element html{
 	element head{
@@ -8,7 +9,7 @@ element html{
 		element link { attribute rel {"stylesheet"}, attribute type {"text/css"}, attribute href {"/public/css/monitoring.css"}}
 	},
 	element body{
-		element h1{"MarkLogic Monitoring"},
+		element h1{"MarkLogic Monitoring for "||util:get-server-name()},
     element h2{"Tables"},
     element h4{element a{ attribute href{$constants:monitoring-report-uri}, "Current Server Metrics"}},    
 		element h2{"Charts"},
@@ -27,5 +28,8 @@ element html{
 	,
 	element h2{"Alerts"},
 		element h4{element a{ attribute href{$constants:alerting-status-uri}, "Alerting Status"}}
+	,
+	element h2{"Server Selection"},
+		element h4{element a{ attribute href{$constants:select-server-uri}, "Select Server"}}
 	}
 }

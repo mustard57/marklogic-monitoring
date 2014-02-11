@@ -1,11 +1,7 @@
 import module namespace constants = "KT:Monitoring:constants" at "/app/lib/constants.xqy";
 import module namespace util = "KT:Monitoring:util" at "/app/lib/util.xqy";
 
-declare namespace dbmc = "KT:Monitoring:config";
-
-declare variable $config-document := fn:doc($constants:configuration-uri);
-
-declare variable $server-name as xs:string := util:server-name-from-monitoring-config-doc($config-document);
+declare variable $server-name as xs:string := util:get-server-name();
 declare variable $monitoring-data-map as map:map := map:map();
 
 declare variable $report-config := fn:doc($constants:report-config-uri);
@@ -16,7 +12,7 @@ element head{
 		<link rel="stylesheet" type="text/css" href="/public/css/monitoring.css" />
 },
 element body{
-element div{attribute class{"table-heading"},element h1{"Monitoring Statistics"}},
+element div{attribute class{"table-heading"},element h1{"Monitoring Statistics for "||$server-name}},
 let $dates := cts:element-values(xs:QName("date-time"),(),(),cts:element-value-query(xs:QName("server-name"),$server-name))[last() - 5 to last()]
 let $null := for $date in $dates
                 return

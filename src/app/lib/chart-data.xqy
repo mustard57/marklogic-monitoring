@@ -22,11 +22,13 @@ declare private function getDurationFromString($string){
 };
 
 declare function get-statistic($element-name as xs:string, $period as xs:string, $server-name as xs:string){
+	let $max-date := cts:max(cts:element-reference(xs:QName("date-time")),(),cts:element-value-query(xs:QName("server-name"),$server-name))
+	return
     element points{
         for $occurrence in cts:element-value-co-occurrences(xs:QName("date-time"),xs:QName($element-name),(),
             cts:and-query((
             cts:element-value-query(xs:QName("server-name"),$server-name),
-            cts:element-range-query(xs:QName("date-time"),">=",fn:current-dateTime() - getDurationFromString($period)))))
+            cts:element-range-query(xs:QName("date-time"),">=",$max-date - getDurationFromString($period)))))
         return
         element point{
           element date{$occurrence/cts:value[1]/text()},

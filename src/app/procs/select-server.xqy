@@ -14,6 +14,7 @@ element html{
 		element h2{"Server Selection"},
 		element h4{"Select the server details you wish to view"},
 		for $server-name in cts:element-values(xs:QName("server-name"))
+		order by $server-name
 		return
 		element p{element h4{element a{attribute href{"/index.xqy?server-name="||$server-name},$server-name}}}
 	},

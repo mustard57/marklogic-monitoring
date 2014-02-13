@@ -508,6 +508,12 @@
         <privilege>
 	  <privilege-name>xdmp:with-namespaces</privilege-name>
 	</privilege>
+    <privilege>
+	  <privilege-name>xdmp:get-session-field</privilege-name>
+	</privilege>
+    <privilege>
+	  <privilege-name>xdmp:set-session-field</privilege-name>
+	</privilege>	
       </privileges>
     </role>
   </roles>

@@ -1,4 +1,2 @@
-deploy/default.properties
-deploy/build.properties
 deploy/used.properties
 data/config/monitoring-config.xml.standard

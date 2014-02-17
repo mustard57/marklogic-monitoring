@@ -1,3 +1,5 @@
+PATH=$PATH:.
+
 echo Running Full Roxy Build
 echo
 echo $1 Environment selected

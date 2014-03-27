@@ -8,6 +8,8 @@ declare variable $chart-view-uri := "/app/view.html";
 declare variable $monitoring-report-uri := "/app/procs/monitoring-report.xqy";
 declare variable $alerting-status-uri := "/app/procs/alerts.xqy";
 declare variable $select-server-uri := "/app/procs/select-server.xqy";
+declare variable $change-password-uri := "/app/procs/change-password.xqy";
+declare variable $monitoring-data-export-uri := "/app/procs/export-monitoring-data.xqy";
 
 declare variable $server-name-qname := xs:QName("server-name");
 declare variable $server-name-field-name := "server-name";

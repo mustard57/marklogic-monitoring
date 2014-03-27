@@ -122,3 +122,18 @@ h4
 .clear-float {
 	clear: both;
 }
+
+#errorContainer {
+    display: none;
+    overflow: auto;
+    border: 1px solid #FF2323;
+    padding-top: 0;
+    width: 500px ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+#errorContainer label {
+    float: none;
+    width: auto;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Marklogic-monitoring : Monitor your MarkLogic Cluster using this app" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Marklogic-monitoring</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mustard57/marklogic-monitoring">View on GitHub</a>
+
+          <h1 id="project_title">Marklogic-monitoring</h1>
+          <h2 id="project_tagline">Monitor your MarkLogic Cluster using this app</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mustard57/marklogic-monitoring/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mustard57/marklogic-monitoring/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="marklogic-monitoring" class="anchor" href="#marklogic-monitoring"><span class="octicon octicon-link"></span></a>MarkLogic Monitoring</h1>
+
+<p>Monitor your MarkLogic Application</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Just one thing to do. You need to specify the application server you wish to monitor.</p>
+
+<p>Open up data/config/monitoring-config.xml</p>
+
+<p>Change YOUR SERVER NAME HERE</p>
+
+<p>to whatever your application server name is. If nothing else, set it to ML-Monitoring-xcc, and then it will monitor itself.</p>
+
+<p>Now run doAll.sh local ( having set your local.properties )</p>
+
+<p>The app will install on http://localhost:8030</p>
+
+<p>A scheduled job will run once per minute, snapping everything associated with your application. </p>
+
+<p>This install uses Roxy - <a href="https://github.com/marklogic/roxy">https://github.com/marklogic/roxy</a> - so if you want to install to other servers just do the Roxy thing with your properties.</p>
+
+<p>You can access via good old admin, but ML-Monitoring-user/ML-Monitoring-user would be better</p>
+
+<h2>
+<a name="test-your-install" class="anchor" href="#test-your-install"><span class="octicon octicon-link"></span></a>Test your install</h2>
+
+<p>Maybe a little mlcp? </p>
+
+<p>I use</p>
+
+<p>./mlcp.sh import -host $HOST -port $PORT -username $USERNAME -password $PASSWORD -mode local -fastload $FASTLOAD -input_file_path $IMPORT_PATH -thread_count $THREAD_COUNT -input_compressed true -output_uri_prefix / </p>
+
+<p>to import from a named zip file. Make sure your $PORT corresponds to the server named above.</p>
+
+<p>Check your ErrorLog.txt if nothing happens. The first insert will throw some errors, but after that, you should be cooking with gas.</p>
+
+<h2>
+<a name="caveats" class="anchor" href="#caveats"><span class="octicon octicon-link"></span></a>Caveats</h2>
+
+<p>Works with ML6. References some ML modules. It may not work with ML7. If not, let me know. Easily rectified.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Marklogic-monitoring maintained by <a href="https://github.com/mustard57">mustard57</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

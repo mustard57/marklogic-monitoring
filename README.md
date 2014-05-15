@@ -1,7 +1,7 @@
 MarkLogic Monitoring
 ====================
 
-Monitor your MarkLogic Application
+Monitor your MarkLogic Application. Full detail at [MarkLogic-Monitoring.pdf](http://mustard57.github.io/marklogic-monitoring/docs/MarkLogicMonitoring.pdf).
 
 Installation
 ------------
